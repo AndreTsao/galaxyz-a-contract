@@ -14,15 +14,15 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const GCLX = await hre.ethers.getContractFactory('GCLX');
+  const BOTTY = await hre.ethers.getContractFactory('BOTTY');
   // 替换成你的盲盒 ipfs 地址
-  const gclx = await GCLX.deploy(
+  const botty = await BOTTY.deploy(
     'ipfs://QmbyUfWA5fuedutDAJ5CPs4ujVAfhPhn2Hi1URhAPwYJM7/'
   );
 
-  await gclx.deployed();
+  await botty.deployed();
 
-  console.log('Deployed to:', gclx.address);
+  console.log('Deployed to:', botty.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
