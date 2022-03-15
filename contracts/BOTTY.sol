@@ -4,7 +4,7 @@ pragma solidity ^0.8.2;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "erc721a/contracts/ERC721A.sol";
 
-contract GCLX is ERC721A, Ownable {
+contract BOTTY is ERC721A, Ownable {
     enum Status {
         Waiting,
         Started,
@@ -21,7 +21,7 @@ contract GCLX is ERC721A, Ownable {
     event StatusChanged(Status status);
     event BaseURIChanged(string newBaseURI);
 
-    constructor(string memory initBaseURI) ERC721A("GuoChanLiangXin", "GCLX") {
+    constructor(string memory initBaseURI) ERC721A("BOTTY", "BOTTY") {
         baseURI = initBaseURI;
     }
 
@@ -30,15 +30,15 @@ contract GCLX is ERC721A, Ownable {
     }
 
     function mint(uint256 quantity) external payable {
-        require(status == Status.Started, "GCLX: Hai mei kai shi.");
-        require(tx.origin == msg.sender, "GCLX: Bu yun xu he yue diao yong.");
+        require(status == Status.Started, "BOTTY: Not started yet.");
+        require(tx.origin == msg.sender, "BOTTY: Contract call not allowed.");
         require(
             numberMinted(msg.sender) + quantity <= MAX_MINT_PER_ADDR,
-            "GCLX: Zui duo lia."
+            "BOTTY: This is more than allowed."
         );
         require(
             totalSupply() + quantity <= MAX_SUPPLY,
-            "GCLX: Mei zhe me duo le."
+            "BOTTY: Not enough quantity."
         );
 
         _safeMint(msg.sender, quantity);
@@ -52,7 +52,7 @@ contract GCLX is ERC721A, Ownable {
     }
 
     function refundIfOver(uint256 price) private {
-        require(msg.value >= price, "GCLX: Mei duo gei ETH.");
+        require(msg.value >= price, "BOTTY: Not enough ETH.");
         if (msg.value > price) {
             payable(msg.sender).transfer(msg.value - price);
         }
@@ -71,6 +71,6 @@ contract GCLX is ERC721A, Ownable {
     function withdraw(address payable recipient) external onlyOwner {
         uint256 balance = address(this).balance;
         (bool success, ) = recipient.call{value: balance}("");
-        require(success, "GCLX: Wan le, quan wan le.");
+        require(success, "BOTTY: NFTs have been completely minted.");
     }
 }
