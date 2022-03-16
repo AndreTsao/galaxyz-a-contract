@@ -24,7 +24,7 @@ describe('contract test', function () {
     expect(await hardhatToken.baseURI()).to.equal(baseURI);
   });
 
-  it('mint ', async function () {
+  it('mint ', async function () {//????
     await hardhatToken.mint(2, { value: ethers.utils.parseEther('0.04') });
     await hardhatToken.mint(2, { value: ethers.utils.parseEther('0.02') });
   });

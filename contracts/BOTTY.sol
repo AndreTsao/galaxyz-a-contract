@@ -13,9 +13,9 @@ contract BOTTY is ERC721A, Ownable {
 
     Status public status;
     string public baseURI;
-    uint256 public constant MAX_MINT_PER_ADDR = 2;
+    uint256 public constant MAX_MINT_PER_ADDR = 10;
     uint256 public constant MAX_SUPPLY = 1000;
-    uint256 public constant PRICE = 0.01 * 10**18; // 0.01 ETH
+    uint256 public constant PRICE = 0.002 * 10**18; // 0.002 ETH
 
     event Minted(address minter, uint256 amount);
     event StatusChanged(Status status);
