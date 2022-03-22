@@ -17,7 +17,7 @@ async function main() {
   const BOTTY = await hre.ethers.getContractFactory('BOTTY');
   // 替换成你的盲盒 ipfs 地址
   const botty = await BOTTY.deploy(
-    'ipfs://QmbyUfWA5fuedutDAJ5CPs4ujVAfhPhn2Hi1URhAPwYJM7/'
+    'ipfs://QmTJA4uFZ5U1o7UuDNGEVQqqLf6KRNuysg53hjKLXQz6Gw/'
   );
 
   await botty.deployed();
