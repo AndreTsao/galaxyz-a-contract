@@ -14,15 +14,15 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const BOTTY = await hre.ethers.getContractFactory('BOTTY');
+  const TOCABO = await hre.ethers.getContractFactory('TOCABO');
   // 替换成你的盲盒 ipfs 地址
-  const botty = await BOTTY.deploy(
+  const tocabo = await TOCABO.deploy(
     'ipfs://QmTJA4uFZ5U1o7UuDNGEVQqqLf6KRNuysg53hjKLXQz6Gw/'
   );
 
   await botty.deployed();
 
-  console.log('Deployed to:', botty.address);
+  console.log('Deployed to:', tocabo.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

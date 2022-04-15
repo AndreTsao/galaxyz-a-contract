@@ -9,7 +9,7 @@ describe('contract test', function () {
   const baseURI = 'ipfs://QmYdoCeWfvgZVwyEJfFM537qWnM21qoWU64ihBZx9nLcyx';
 
   beforeEach(async function () {
-    Token = await ethers.getContractFactory('BOTTY');
+    Token = await ethers.getContractFactory('TOCABO');
     [owner, addr1] = await ethers.getSigners();
 
     hardhatToken = await Token.deploy(baseURI);

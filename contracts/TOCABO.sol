@@ -4,7 +4,7 @@ pragma solidity ^0.8.2;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "erc721a/contracts/ERC721A.sol";
 
-contract BOTTY is ERC721A, Ownable {
+contract TOCABO is ERC721A, Ownable {
     enum Status {
         Waiting,
         Started,
@@ -13,15 +13,16 @@ contract BOTTY is ERC721A, Ownable {
 
     Status public status;
     string private baseURI;
-    uint256 public constant MAX_MINT_PER_ADDR = 15;
+    uint256 public constant MAX_MINT_PER_ADDR = 10;
     uint256 public constant MAX_SUPPLY = 5555;
     uint256 public constant PRICE = 0.003 * 10**18; // 0.003 ETH
+    uint256 private constant FREE_SUPPLY = 400;
 
     event Minted(address minter, uint256 amount);
     event StatusChanged(Status status);
     event BaseURIChanged(string newBaseURI);
 
-    constructor(string memory initBaseURI) ERC721A("BOTTY", "BOTTY") {
+    constructor(string memory initBaseURI) ERC721A("TOCABO", "TOCABO") {
         baseURI = initBaseURI;
     }
 
@@ -30,19 +31,24 @@ contract BOTTY is ERC721A, Ownable {
     }
 
     function mint(uint256 quantity) external payable {
-        require(status == Status.Started, "BOTTY: Not started yet.");
-        require(tx.origin == msg.sender, "BOTTY: Contract call not allowed.");
+        require(status == Status.Started, "TOCABO: Not started yet.");
+        require(tx.origin == msg.sender, "TOCABO: Contract call not allowed.");
         require(
             numberMinted(msg.sender) + quantity <= MAX_MINT_PER_ADDR,
-            "BOTTY: This is more than allowed."
+            "TOCABO: This is more than allowed."
         );
         require(
             totalSupply() + quantity <= MAX_SUPPLY,
-            "BOTTY: Not enough quantity."
+            "TOCABO: Not enough quantity."
         );
 
         _safeMint(msg.sender, quantity);
+
+        if (totalSupply() + quantity<= FREE_SUPPLY) {
+            refundIfOver(0);
+        } else {
         refundIfOver(PRICE * quantity);
+        }
 
         emit Minted(msg.sender, quantity);
     }
@@ -52,7 +58,7 @@ contract BOTTY is ERC721A, Ownable {
     }
 
     function refundIfOver(uint256 price) private {
-        require(msg.value >= price, "BOTTY: Not enough ETH.");
+        require(msg.value >= price, "TOCABO: Not enough ETH.");
         if (msg.value > price) {
             payable(msg.sender).transfer(msg.value - price);
         }
@@ -71,6 +77,6 @@ contract BOTTY is ERC721A, Ownable {
     function withdraw(address payable recipient) external onlyOwner {
         uint256 balance = address(this).balance;
         (bool success, ) = recipient.call{value: balance}("");
-        require(success, "BOTTY: NFTs have been completely minted.");
+        require(success, "TOCABO: NFTs have been completely minted.");
     }
 }
