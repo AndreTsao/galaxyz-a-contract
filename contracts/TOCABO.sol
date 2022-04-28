@@ -22,7 +22,7 @@ contract TOCABO is ERC721A, Ownable {
     event StatusChanged(Status status);
     event BaseURIChanged(string newBaseURI);
 
-    constructor(string memory initBaseURI) ERC721A("TOCABO", "TOCABO") {
+    constructor(string memory initBaseURI) ERC721A("Tocabo", "TOCABO") {
         baseURI = initBaseURI;
     }
 

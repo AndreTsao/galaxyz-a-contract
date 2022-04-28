@@ -20,7 +20,7 @@ async function main() {
     'ipfs://QmNUmeLsifk2HB7iHc45tZ1vXrVa7tAt8NTVKUarLX225a/'
   );
 
-  await botty.deployed();
+  await tocabo.deployed();
 
   console.log('Deployed to:', tocabo.address);
 }
