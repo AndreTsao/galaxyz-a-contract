@@ -17,7 +17,7 @@ async function main() {
   const TOCABO = await hre.ethers.getContractFactory('TOCABO');
   // 替换成你的盲盒 ipfs 地址
   const tocabo = await TOCABO.deploy(
-    'ipfs://QmNUmeLsifk2HB7iHc45tZ1vXrVa7tAt8NTVKUarLX225a/'
+    'ipfs://Qmc6RQemKeyevPSFqKtisCWrhGnZXY5q4cFaTt3MwnHEaG/'
   );
 
   await tocabo.deployed();
