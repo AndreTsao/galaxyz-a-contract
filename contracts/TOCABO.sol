@@ -15,7 +15,7 @@ contract TOCABO is ERC721A, Ownable {
     string private baseURI;
     uint256 public constant MAX_MINT_PER_ADDR = 10;
     uint256 public constant MAX_SUPPLY = 5666;
-    uint256 public constant PRICE = 0.004 * 10**18; 
+    uint256 public constant PRICE = 0.005 * 10**18; 
     uint256 public constant FREE_MINT_SUPPLY = 600;
 
     event Minted(address minter, uint256 amount);

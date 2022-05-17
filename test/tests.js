@@ -6,7 +6,7 @@ describe('contract test', function () {
   let hardhatToken;
   let owner;
   let addr1;
-  const baseURI = 'ipfs://QmYdoCeWfvgZVwyEJfFM537qWnM21qoWU64ihBZx9nLcyx';
+  const baseURI = 'ipfs://Qmc6RQemKeyevPSFqKtisCWrhGnZXY5q4cFaTt3MwnHEaG';
 
   beforeEach(async function () {
     Token = await ethers.getContractFactory('TOCABO');
