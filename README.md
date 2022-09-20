@@ -19,7 +19,7 @@ npm install
 
 将 .env.sample 复制改名为 .env 然后将里面内容进行修改。
 
-为了方便测试，你可以使用国产良心的 ipfs 地址作为测试：
+为了方便测试，你可以使用TocaIsland的 ipfs 地址作为测试：
 
 - 生产环境：ipfs://Qmc6RQemKeyevPSFqKtisCWrhGnZXY5q4cFaTt3MwnHEaG/
 
